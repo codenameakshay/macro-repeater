@@ -27,6 +27,7 @@ fa.write("  time.sleep(0.1)\n")
 fa.write("  win32api.keybd_event(a,0,win32con.KEYEVENTF_KEYUP,0)\n")
 fa.write("  time.sleep(0.1)\n")
 t = int(input("Enter the recording length in seconds: "))
+temp = [0,0]
 tl = 18 * t
 w = int(input("Do you want to loop it? If yes then enter the loop count else 0 :"))
 if w == 0:
@@ -34,9 +35,11 @@ if w == 0:
         a = win32api.GetCursorPos()
         x = a[0]
         y = a[1]
-        cmnd = "win32api.SetCursorPos([" + str(x) + "," + str(y) + "])\n"
-        fa.write(cmnd)
+        if x!=temp[0] and y!=temp[1]:
+            cmnd = "win32api.SetCursorPos([" + str(x) + "," + str(y) + "])\n"
+            fa.write(cmnd)
         fa.write("time.sleep(s)\n")
+        temp = [x,y]
         a = win32api.GetKeyState(0x01)
         if a != state_left:  # Button state changed
             state_left = a
