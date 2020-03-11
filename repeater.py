@@ -1,8 +1,8 @@
 import win32api
-import win32con
 import os
 import time
 import keyboard
+from tkinter import messagebox
 
 z = 0
 c = 0
@@ -12,6 +12,7 @@ fa = open("code.txt", "w")
 fa.write("import win32api\n")
 fa.write("import win32con\n")
 fa.write("import time\n")
+fa.write("from tkinter import messagebox\n")
 fa.write("s=float(input('Enter a speed between(0 to 36)(slow to fast)(0 or 18 for normal speed) : '))\n")
 fa.write("if s==0:\n")
 fa.write("  s=0.05555555555555555\n")
@@ -335,10 +336,11 @@ else:
         time.sleep(0.05555555555555555)
         c += 1
 if z == 1:
-    print("Recording stopped by the user.")
+    messagebox.showerror("Error", "Recording stopped by the user.")
 else:
-    print("Completed", t, "second recording!")
-fa.write("print('Completed Playing! Developed by Abhay Maurya and Akshay Maurya.')")
+    msg1="Completed " +str(t)+ " second recording!"
+    messagebox.showinfo("Completed",msg1)
+fa.write("messagebox.showinfo('Completed','Completed Playing! Developed by Abhay Maurya and Akshay Maurya.')")
 fa.close()
 nm = input("Enter a name for your code : ")
 nam = nm + ".py"
