@@ -1,5 +1,4 @@
 import win32api
-import win32con
 import os
 import time
 import keyboard
